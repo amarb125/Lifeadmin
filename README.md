@@ -26,8 +26,8 @@ Copy `.env.example` to `.env.local` and fill in what you want. Each piece is ind
 | Push to closed app | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` | `npx web-push generate-vapid-keys`. iPhone needs the site added to the Home Screen (iOS 16.4+). |
 | Voice fallback | `OPENAI_API_KEY` | For browsers without the Web Speech API (e.g. Firefox). Chrome/Edge/Safari transcribe in the browser with no key. |
 
-### Scheduling the cron job
-`vercel.json` declares a per-minute cron. **Vercel Hobby only allows daily crons**, so on Hobby use one of: Supabase `pg_cron` + `pg_net` calling the route, a GitHub Actions schedule (5-minute minimum), or an external pinger. Reminder times are stored as exact instants, so a delayed run sends late, never twice.
+### Scheduling the reminder job
+`vercel.json` is intentionally empty: **Vercel Hobby only allows daily crons**, and a per-minute one blocks the deploy. Something else must call `GET /api/cron/reminders` with `Authorization: Bearer $CRON_SECRET` every minute: Supabase `pg_cron` + `pg_net` (recommended, set up from the Supabase dashboard), a GitHub Actions schedule (5-minute minimum), or an external pinger. On Vercel Pro you can add `{"crons":[{"path":"/api/cron/reminders","schedule":"* * * * *"}]}` to `vercel.json`. Reminder times are stored as exact instants, so a delayed run sends late, never twice.
 
 ## How the important parts work
 
