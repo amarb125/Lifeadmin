@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 242 236;
+  --surface: 255 255 255;
+  --ink: 20 27 45;
+  --muted: 100 108 124;
+  --line: 226 221 211;
+  --accent: 14 124 123;
+  --accent-ink: 255 255 255;
+  --warn: 214 72 34;
+  --gold: 176 125 38;
+  --hero: 20 27 45;
+  --hero-ink: 245 242 236;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: 12 16 28;
+    --surface: 22 28 44;
+    --ink: 240 237 230;
+    --muted: 150 157 172;
+    --line: 42 50 72;
+    --accent: 56 189 180;
+    --accent-ink: 8 20 24;
+    --warn: 255 129 92;
+    --gold: 222 176 92;
+    --hero: 30 38 60;
+    --hero-ink: 240 237 230;
+    color-scheme: dark;
+  }
+}
+
+html, body { background: rgb(var(--bg)); color: rgb(var(--ink)); }
+body { -webkit-font-smoothing: antialiased; padding-bottom: env(safe-area-inset-bottom); }
+button { touch-action: manipulation; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition active:scale-[0.98] disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent; }
+  .btn-primary { @apply btn bg-accent text-accent-ink hover:opacity-90; }
+  .btn-ghost { @apply btn border border-line bg-surface text-ink hover:bg-bg; }
+  .btn-warn { @apply btn bg-warn text-white hover:opacity-90; }
+  .field { @apply w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30; }
+  .label { @apply mb-1 block text-xs font-medium uppercase tracking-wide text-muted; }
+  .card { @apply rounded-2xl border border-line bg-surface; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full border border-line px-2.5 py-1 text-xs text-muted; }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "LifePilot",
+  "short_name": "LifePilot",
+  "description": "An AI life-admin assistant: say what you need to do, and it handles the schedule and the follow-up.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f7f9",
+  "theme_color": "#188469",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
